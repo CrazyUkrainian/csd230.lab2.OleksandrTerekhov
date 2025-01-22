@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- chatgpt prompt: show a thymeleaf template for a simple ecommerce website-->
+<!--https://www.baeldung.com/spring-thymeleaf-css-js-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple E-Commerce</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+    <script th:inline="javascript">
+        var nameJs = /*[[${name}]]*/;
+    </script>
+    <script type="text/javascript" th:src="@{/js/action.js}"></script>
+</head>
+<body>
+<header>
+    <h1>Welcome to Simple E-Commerce</h1>
+    <nav>
+        <a href="/static" th:href="@{/static}">Home</a>
+        <a href="/static" th:href="@{/books}">Books</a>
+        <a href="/cart" th:href="@{/cart}">Cart</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+
+    </nav>
+</header>
+
+<main>
+    <h2>Books</h2>
+    <button type="button" th:onclick="showName(nameJs);">Show Name</button>
+    <p><a href="#" th:href="@{/books/add-book}">Add new book</a></p>
+    <div class="product-list">
+        <!-- Loop through the products -->
+        <form th:action="@{/books/selection}" method="post" th:object="${bookSelection}">
+            <table border="1" cellpadding="5" cellspacing="0">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Edit</th>
+                    <th>Select</th>
+                </tr>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.id}"></td>
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.price}"></td>
+                    <td th:text="${book.description}"></td>
+                    <td><a th:href="@{/books/edit-book(id=${book.id})}">edit...</a></td>
+                    <td><input type="checkbox" th:value="${book.id}" name="selectedBooks"/></td>
+                </tr>
+            </table>
+            <button type="submit">Delete selected books...</button>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Simple E-Commerce. All rights reserved.</p>
+</footer>
+</body>
+</html>

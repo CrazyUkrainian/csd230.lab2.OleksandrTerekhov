@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Book</title>
+</head>
+<body>
+<header>
+    <h1>Welcome to Simple E-Commerce</h1>
+    <h1>Edit Book</h1>
+    <nav>
+        <a href="/static" th:href="@{/static}">Home</a>
+        <a href="/static" th:href="@{/books}">Books</a>
+        <a href="/cart" th:href="@{/cart}">Cart</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+
+    </nav>
+</header>
+
+<main>
+
+<form th:action="@{/books/edit-book(id=${book.id})}" method="post" th:object="${book}">
+<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+
+    <table>
+        <tr>
+            <td>Title:</td>
+            <td><input type="text" th:field="*{title}"/></td>
+        </tr>
+
+        <tr>
+            <td>Author:</td>
+            <td><input type="text" th:field="*{author}"/></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><button type="submit">Save Changes</button></td>
+        </tr>
+    </table>
+
+    <p>Use this form to edit book details.</p>
+</form>
+
+<p><a href="#" th:href="@{/books}">Return to Book List</a></p>
+</main>
+</body>
+</html>
