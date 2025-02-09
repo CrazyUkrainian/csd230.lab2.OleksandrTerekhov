@@ -45,7 +45,6 @@ public class BookController {
     }
     @PostMapping("/edit-book")
     public String edit_bookSubmit(@ModelAttribute Book book, Model model) {
-//        model.addAttribute("book", book);
         book.setDescription("Book: "+book.getTitle());
         bookRepository.save(book);
 //        model.addAttribute("books", bookRepository.findAll());
