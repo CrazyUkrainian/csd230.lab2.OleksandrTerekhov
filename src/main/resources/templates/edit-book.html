@@ -16,7 +16,7 @@
 </nav>
 
 <form th:action="@{/books/edit-book(id=${book.id})}" method="post" th:object="${book}">
-<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+
 
     <table>
         <tr>
