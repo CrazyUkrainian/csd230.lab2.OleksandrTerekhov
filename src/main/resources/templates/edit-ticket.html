@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edit Ticket</title>
+</head>
+<body>
+
+<h1>Edit Ticket</h1>
+<nav>
+  <a href="/">Home</a>
+  <a href="/tickets">Tickets</a>
+  <form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+  </form>
+</nav>
+
+<form th:action="@{/tickets/edit-ticket(id=${ticket.id})}" method="post" th:object="${ticket}">
+  <!-- CSRF Token for security -->
+  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+  <table>
+    <tr>
+      <td>Text:</td>
+      <td><input type="text" th:field="*{text}" required/></td>
+    </tr>
+
+    <tr>
+      <td>Description:</td>
+      <td><input type="text" th:field="*{description}" required/></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><button type="submit">Save Changes</button></td>
+    </tr>
+  </table>
+
+  <p>Use this form to edit ticket details.</p>
+</form>
+
+<p><a href="#" th:href="@{/tickets}">Return to Ticket List</a></p>
+
+</body>
+</html>

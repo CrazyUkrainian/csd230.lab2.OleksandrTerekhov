@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>DiscMags</title>
+</head>
+<body>
+<h1>DiscMags</h1>
+
+<form th:action="@{/discMags/selection}" method="post">
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Has Disc</th>
+            <th>Edit</th>
+            <th>Select</th>
+        </tr>
+        <tr th:each="discMag : ${discMags}">
+            <td th:text="${discMag.id}"></td>
+            <td th:text="${discMag.title}"></td>
+            <td th:text="${discMag.description}"></td>
+            <td><input type="checkbox" th:value="${discMag.id}" name="selectedDiscMags" th:id="'discMag_' + ${discMag.id}"/></td>
+            <td><a th:href="@{/discMags/edit-discMag?id=${discMag.id}}">edit...</a></td>
+        </tr>
+    </table>
+    <button type="submit">Delete selected DiscMags...</button>
+</form>
+
+<p><a href="#" th:href="@{/discMags/add-discMag}">Add new DiscMag</a></p>
+
+</body>
+</html>

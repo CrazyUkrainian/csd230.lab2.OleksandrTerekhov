@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tickets</title>
+</head>
+<body>
+<h1>Tickets</h1>
+
+<form th:action="@{/tickets/selection}" method="post">
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>ID</th>
+            <th>Text</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Select</th>
+        </tr>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.id}"></td>
+            <td th:text="${ticket.text}"></td>
+            <td th:text="${ticket.description}"></td>
+            <td><a th:href="@{/tickets/edit-ticket?id=${ticket.id}}">edit...</a></td>
+            <td><input type="checkbox" th:value="${ticket.id}" name="selectedTickets"/></td>
+        </tr>
+    </table>
+    <button type="submit">Delete selected tickets...</button>
+</form>
+
+<p><a href="#" th:href="@{/tickets/add-ticket}">Add new ticket</a></p>
+
+</body>
+</html>

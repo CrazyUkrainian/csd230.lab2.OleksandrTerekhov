@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edit DiscMag</title>
+</head>
+<body>
+
+<h1>Edit DiscMag</h1>
+<nav>
+  <a href="/">Home</a>
+  <a href="/discMags">DiscMags</a>
+  <form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+  </form>
+</nav>
+
+<form th:action="@{/discMags/edit-discMag(id=${discMag.id})}" method="post" th:object="${discMag}">
+  <table>
+    <tr>
+      <td>Title:</td>
+      <td><input type="text" th:field="*{title}" required/></td>
+    </tr>
+
+    <tr>
+      <td>Description:</td>
+      <td><input type="text" th:field="*{description}" required/></td>
+    </tr>
+
+    <tr>
+      <td>Has Disc:</td>
+      <td><input type="checkbox" th:field="*{hasDisc}"/></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><button type="submit">Save Changes</button></td>
+    </tr>
+  </table>
+
+  <p>Use this form to edit DiscMag details.</p>
+</form>
+
+<p><a href="#" th:href="@{/discMags}">Return to DiscMag List</a></p>
+
+</body>
+</html>

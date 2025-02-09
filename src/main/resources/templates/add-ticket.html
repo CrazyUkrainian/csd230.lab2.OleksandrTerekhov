@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Ticket</title>
+</head>
+<body>
+<h1>Add Ticket</h1>
+
+<form th:action="@{/tickets/add-ticket}" method="post">
+    <label for="text">Text:</label>
+    <input type="text" id="text" name="text" th:value="${ticket.text}" required/>
+    <br>
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" th:value="${ticket.description}" required/>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

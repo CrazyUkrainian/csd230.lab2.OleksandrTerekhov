@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add DiscMag</title>
+</head>
+<body>
+<h1>Add DiscMag</h1>
+
+<form th:action="@{/discMags/add-discMag}" method="post">
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="title" th:value="${discMag.title}" required/>
+  <br>
+  <label for="description">Description:</label>
+  <input type="text" id="description" name="description" th:value="${discMag.description}" required/>
+  <br>
+  <label for="hasDisc">Has Disc:</label>
+  <input type="checkbox" id="hasDisc" name="hasDisc" th:checked="${discMag.hasDisc}"/>
+  <br>
+  <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
