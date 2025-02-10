@@ -50,7 +50,7 @@ public class TicketController {
     }
 
 
-    @PostMapping("/edit-ticket")// byfc
+    @PostMapping("/edit-ticket")// byfc ss
     public String editTicketSubmit(@ModelAttribute Ticket ticket, Model model) {
         ticket.setDescription("Ticket: " + ticket.getText());
         ticketRepository.save(ticket);
