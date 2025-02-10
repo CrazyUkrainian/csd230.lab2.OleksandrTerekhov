@@ -15,8 +15,8 @@
 </nav>
 
 <form th:action="@{/tickets/edit-ticket(id=${ticket.id})}" method="post" th:object="${ticket}">
-  <!-- CSRF Token for security -->
-  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+<!--  &lt;!&ndash; CSRF Token for security &ndash;&gt;-->
+<!--  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
 
   <table>
     <tr>
