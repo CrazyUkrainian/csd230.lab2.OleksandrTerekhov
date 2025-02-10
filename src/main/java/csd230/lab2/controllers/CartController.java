@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @Controller
 @RequestMapping("/cart")
 public class CartController {
@@ -62,4 +61,51 @@ public class CartController {
 
         return "redirect:/cart";
     }
+
+    @GetMapping("/checkout")
+    public String checkout(Model model) {
+        Iterable<Cart> allCarts = cartRepository.findAll();
+        Cart firstCart = allCarts.iterator().next();  // Grab the first cart for demo
+        double totalAmount = firstCart.getItems().stream()
+                .mapToDouble(CartItem::getPrice)
+                .sum();
+        model.addAttribute("totalAmount", totalAmount);
+        return "checkout";
+    }
+
+    @PostMapping("/checkout")
+    public String processCheckout() {
+        // Perform any necessary checkout actions here
+        return "redirect:/cart/checkout";  // Redirect to the cart or a confirmation page
+    }
+    @PostMapping("/process-payment")
+    public String processPayment(
+            @RequestParam("cardNumber") String cardNumber,
+            @RequestParam("expiryDate") String expiryDate,
+            @RequestParam("cvv") String cvv,
+            Model model) {
+
+        // Simulate payment processing (for demo purposes)
+        boolean transactionApproved = simulatePayment(cardNumber, expiryDate, cvv);
+
+        // Add the transaction status to the model
+        model.addAttribute("transactionApproved", transactionApproved);
+
+        // Calculate the total amount again (optional)
+        Iterable<Cart> allCarts = cartRepository.findAll();
+        Cart firstCart = allCarts.iterator().next();
+        double totalAmount = firstCart.getItems().stream()
+                .mapToDouble(CartItem::getPrice)
+                .sum();
+        model.addAttribute("totalAmount", totalAmount);
+
+        return "checkout";  // Return to the checkout page to display the result
+    }
+
+    private boolean simulatePayment(String cardNumber, String expiryDate, String cvv) {
+        // Simulate a payment process (e.g., validate card details)
+        // For demo purposes, approve the transaction if the card number is 16 digits
+        return cardNumber != null && cardNumber.length() == 16;
+    }
+
 }

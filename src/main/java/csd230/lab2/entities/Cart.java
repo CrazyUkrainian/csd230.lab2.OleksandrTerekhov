@@ -43,4 +43,8 @@ public class Cart {
     public Long getId() {
         return id;
     }
+
+    public Cart orElse(Cart cart) {
+        return cart;
+    }
 }

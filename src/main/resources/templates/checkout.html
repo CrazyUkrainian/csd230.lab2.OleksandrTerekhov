@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+<header>
+    <h1>Welcome to Simple E-Commerce</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/books">Books</a>
+        <a href="/cart">Cart</a>
+        <a href="/tickets">Tickets</a>
+        <a href="/discMags">DiscMagazine</a>
+    </nav>
+</header>
+<main>
+    <h2>Total Amount</h2>
+    <p>Total Amount: $<span th:text="${totalAmount}">0.00</span></p>
+
+    <form th:action="@{/cart/process-payment}" method="post" th:if="${transactionApproved == null}">
+        <h3>Enter Card Details</h3>
+        <div>
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" name="cardNumber" required>
+        </div>
+        <div>
+            <label for="expiryDate">Expiry Date:</label>
+            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+        </div>
+        <div>
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required>
+        </div>
+        <button type="submit">Submit Payment</button>
+    </form>
+
+    <div th:if="${transactionApproved != null}">
+        <h3 th:if="${transactionApproved}">Transaction Approved!</h3>
+        <h3 th:unless="${transactionApproved}">Transaction Failed. Please try again.</h3>
+        <p><a href="/cart">Return to Cart</a></p>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Simple E-Commerce. All rights reserved.</p>
+</footer>
+</body>
+</html>

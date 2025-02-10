@@ -5,7 +5,16 @@
 </head>
 <body>
 <h1>DiscMags</h1>
-
+<header>
+    <h1>Welcome to Simple E-Commerce</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/books">Books</a>
+        <a href="/cart">Cart</a>
+        <a href="/tickets">Tickets</a>
+        <a href="/discMags">DiscMagazine</a>
+    </nav>
+</header>
 <form th:action="@{/discMags/selection}" method="post">
     <table border="1" cellpadding="5" cellspacing="0">
         <tr>
@@ -21,7 +30,7 @@
             <td th:text="${discMag.title}"></td>
             <td th:text="${discMag.description}"></td>
             <td><input type="checkbox" th:value="${discMag.id}" name="selectedDiscMags" th:id="'discMag_' + ${discMag.id}"/></td>
-            <td><a th:href="@{/discMags/edit-discMag?id=${discMag.id}}">edit...</a></td>
+            <td><a th:href="@{/discMags/edit-discMag(id=${discMag.id})}">edit...</a></td>
         </tr>
     </table>
     <button type="submit">Delete selected DiscMags...</button>

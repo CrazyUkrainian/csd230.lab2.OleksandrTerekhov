@@ -4,6 +4,19 @@
     <title>Add Ticket</title>
 </head>
 <body>
+<header>
+    <h1>Welcome to Simple E-Commerce</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/books">Books</a>
+        <a href="/cart">Cart</a>
+        <a href="/tickets">Tickets</a>
+        <a href="/discMags">DiscMagazine</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </nav>
+</header>
 <h1>Add Ticket</h1>
 
 <form th:action="@{/tickets/add-ticket}" method="post">
