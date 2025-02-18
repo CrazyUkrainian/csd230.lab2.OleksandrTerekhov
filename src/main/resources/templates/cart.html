@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
   <meta charset="UTF-8">
   <title>Your Cart</title>
@@ -20,6 +21,12 @@
 
 <main>
   <h2>Cart Items</h2>
+  <div sec:authorize="isAuthenticated()">
+    Logged in as: <span sec:authentication="name"></span>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+</div>
   <div class="cart">
     <!-- Loop through cart items -->
     <table>

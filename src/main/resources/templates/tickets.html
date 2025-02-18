@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <title>Tickets</title>
 </head>
@@ -7,6 +8,12 @@
 <h1>Tickets</h1>
 <header>
     <h1>Welcome to Simple E-Commerce</h1>
+    <div sec:authorize="isAuthenticated()">
+        Logged in as: <span sec:authentication="name"></span>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
     <nav>
         <a href="/">Home</a>
         <a href="/books">Books</a>
