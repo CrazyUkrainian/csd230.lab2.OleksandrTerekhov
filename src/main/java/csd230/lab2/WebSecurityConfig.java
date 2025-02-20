@@ -1,4 +1,4 @@
-package csd230.lab2.config;
+package csd230.lab2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
